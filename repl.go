@@ -56,6 +56,19 @@ type cliCommand struct {
 	callback    func(*config, ...string) error
 }
 
+func getCommandsOrder() []string {
+	return []string{
+		"help",
+		"map",
+		"mapb",
+		"explore",
+		"catch",
+		"inspect",
+		"pokedex",
+		"exit",
+	}
+}
+
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"help": {
@@ -83,10 +96,20 @@ func getCommands() map[string]cliCommand {
 			description: "Gives details about a caught pokemon",
 			callback:    commandInspect,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "Look at the pokemon in your pokedex",
+			callback:    commandPokedex,
+		},
 		"exit": {
 			name:        "exit",
 			description: "Exit the Pokedex",
 			callback:    commandExit,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Explore the provided area",
+			callback:    commandExplore,
 		},
 	}
 }
